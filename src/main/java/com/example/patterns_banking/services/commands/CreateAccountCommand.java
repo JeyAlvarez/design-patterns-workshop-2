@@ -8,6 +8,7 @@ import com.example.patterns_banking.models.Customer;
 import com.example.patterns_banking.repositories.IAccountRepository;
 import com.example.patterns_banking.repositories.ICustomerRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CreateAccountCommand implements ICommand<Account> {
@@ -35,5 +36,11 @@ public class CreateAccountCommand implements ICommand<Account> {
     AccountFactory accountFactory = accountFactoryProvider.getFactory(accountDTO.getAccountType());
     Account account = accountFactory.createAccount(customer, accountDTO.getAccountNumber(), accountDTO.getBalance());
     return accountRepository.save(account);
+  }
+
+  @Override
+  public List<Account> executeAll() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'executeAll'");
   }
 }

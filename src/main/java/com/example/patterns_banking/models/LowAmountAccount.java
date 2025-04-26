@@ -15,8 +15,10 @@ public class LowAmountAccount extends Account {
 
   @Override
   public Double calculateDepositFee(Double amount) {
-//    Realizar logica de este método
-//    Crear el factory para este tipo de cuentas
-//    Crear un command para consultar todas las cuentas
+    if (amount > FREE_TRANSACTION_THRESHOLD) {
+      return amount * DEPOSIT_FEE_RATE;
+    } else {
+      return 0.0;
+    }
   }
 }

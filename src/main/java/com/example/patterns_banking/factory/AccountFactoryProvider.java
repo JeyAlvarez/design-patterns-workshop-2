@@ -8,8 +8,10 @@ import java.util.Map;
 public class AccountFactoryProvider {
   private final CheckingAccountFactory checkingAccountFactory;
   private final SavingsAccountFactory savingsAccountFactory;
+  private final LowAccountFactory lowAccountFactory;
 
-  public AccountFactoryProvider(CheckingAccountFactory checkingAccountFactory, SavingsAccountFactory savingsAccountFactory) {
+  public AccountFactoryProvider(CheckingAccountFactory checkingAccountFactory, SavingsAccountFactory savingsAccountFactory, LowAccountFactory lowAccountFactory) {
+    this.lowAccountFactory = lowAccountFactory;
     this.checkingAccountFactory = checkingAccountFactory;
     this.savingsAccountFactory = savingsAccountFactory;
   }
@@ -17,13 +19,15 @@ public class AccountFactoryProvider {
   public AccountFactory getFactory(AccountType type) {
     Map<AccountType, AccountFactory> factories = Map.of(
       AccountType.CHECKING, checkingAccountFactory,
-      AccountType.SAVINGS, savingsAccountFactory);
+      AccountType.SAVINGS, savingsAccountFactory,
+      AccountType.LOW, lowAccountFactory);
 
     return  factories.get(type);
   }
 
   public enum AccountType {
     CHECKING,
-    SAVINGS
+    SAVINGS,
+    LOW
   }
 }

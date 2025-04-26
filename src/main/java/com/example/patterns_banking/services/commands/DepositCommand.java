@@ -3,6 +3,7 @@ package com.example.patterns_banking.services.commands;
 import com.example.patterns_banking.models.Account;
 import com.example.patterns_banking.repositories.IAccountRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class DepositCommand implements ICommand<Account> {
@@ -26,5 +27,11 @@ public class DepositCommand implements ICommand<Account> {
     Account account = accountOptional.get();
     account.deposit(amount);
     return accountRepository.save(account);
+  }
+
+  @Override
+  public List<Account> executeAll() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'executeAll'");
   }
 }
